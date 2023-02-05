@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exploded View Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r112/three.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // Set up scene, camera, and renderer
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+
+      // Create a 3D object and add it to the scene
+      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+      var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+      var cube = new THREE.Mesh( geometry, material );
+      scene.add( cube );
+
+      // Position the camera and cube
+      camera.position.z = 5;
+      cube.position.set(1,1,1);
+
+      // Animate the scene
+      function animate() {
+        requestAnimationFrame( animate );
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render( scene, camera );
+      }
+      animate();
+    </script>
+  </body>
+</html>
